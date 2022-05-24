@@ -108,6 +108,11 @@ protected:
 
 	UFUNCTION()
 	void DebugOverlayMenuCycleAction(const FInputActionValue& Value);
+/*
+	// New Action
+	UFUNCTION()
+	void AttackAction(const FInputActionValue& Value);
+*/
 
 public:
 	/** Main character reference */
@@ -119,4 +124,6 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "ALS|Input")
 	TObjectPtr<UInputMappingContext> DebugInputMappingContext = nullptr;
+
+	FORCEINLINE class AALSPlayerCameraManager* GetPlayerCameraManager() { return Cast<AALSPlayerCameraManager>(PlayerCameraManager); }
 };

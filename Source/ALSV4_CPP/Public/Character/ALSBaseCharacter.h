@@ -621,4 +621,18 @@ protected:
 private:
 	UPROPERTY()
 	TObjectPtr<UALSDebugComponent> ALSDebugComponent = nullptr;
+
+/*
+private:
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "ALS|Input", meta = (AllowPrivateAccess = "true"))
+	bool bIsAttacking;
+
+public:
+	// New Input
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "ALS|Input")
+	void AttackAction(bool bValue);
+
+	FORCEINLINE bool GetIsAttacking() const { return bIsAttacking; }
+
+*/
 };

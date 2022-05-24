@@ -40,6 +40,10 @@ public:
 
 	virtual FVector GetFirstPersonCameraTarget() override;
 
+	/** Variable of StealthGame tutorial */
+	UPROPERTY(BlueprintReadOnly, Category = "gameplay")
+	bool bIsCarryingObjective;
+
 protected:
 	virtual void Tick(float DeltaTime) override;
 

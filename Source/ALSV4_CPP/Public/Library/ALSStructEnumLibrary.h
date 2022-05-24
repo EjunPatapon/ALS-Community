@@ -320,6 +320,12 @@ private:
 	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = true), Category = "ALS|Character States")
 	bool Barrel_ = false;
 
+	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = true), Category = "ALS|Character States")
+	bool Sword_ = false;
+
+	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = true), Category = "ALS|Character States")
+	bool GreatSword_ = false;
+
 public:
 	FALSOverlayState()
 	{
@@ -340,6 +346,8 @@ public:
 	const bool& Binoculars() const { return Binoculars_; }
 	const bool& Box() const { return Box_; }
 	const bool& Barrel() const { return Barrel_; }
+	const bool& Sword() const { return Sword_; }
+	const bool& GreatSword() const { return GreatSword_; }
 
 	operator EALSOverlayState() const { return State; }
 
@@ -359,6 +367,8 @@ public:
 		Binoculars_ = State == EALSOverlayState::Binoculars;
 		Box_ = State == EALSOverlayState::Box;
 		Barrel_ = State == EALSOverlayState::Barrel;
+		Sword_ = State == EALSOverlayState::Sword;
+		GreatSword_ = State == EALSOverlayState::GreatSword;
 	}
 };
 

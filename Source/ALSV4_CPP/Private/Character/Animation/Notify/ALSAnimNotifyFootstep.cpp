@@ -11,6 +11,7 @@
 #include "PhysicalMaterials/PhysicalMaterial.h"
 #include "NiagaraSystem.h"
 #include "NiagaraFunctionLibrary.h"
+#include "Perception/AISense_Hearing.h"
 
 
 const FName NAME_Mask_FootstepSound(TEXT("Mask_FootstepSound"));
@@ -98,6 +99,9 @@ void UALSAnimNotifyFootstep::Notify(USkeletalMeshComponent* MeshComp, UAnimSeque
 					SpawnedSound = UGameplayStatics::SpawnSoundAtLocation(
 						World, HitFX->Sound.Get(), Hit.Location + HitFX->SoundLocationOffset,
 						HitFX->SoundRotationOffset, FinalVolMult, PitchMultiplier);
+					
+				//	GEngine->AddOnScreenDebugMessage(6, 1.0f, FColor::Green, FString::Printf(TEXT("ReportNoiseEvent : Foot Step (Location)")));
+					UAISense_Hearing::ReportNoiseEvent(MeshOwner->GetInstigatorController(), MeshOwner->GetActorLocation(), FinalVolMult, MeshOwner, 0.f, FName(TEXT("FootStep")));
 					break;
 
 				case EALSSpawnType::Attached:
@@ -107,6 +111,8 @@ void UALSAnimNotifyFootstep::Notify(USkeletalMeshComponent* MeshComp, UAnimSeque
 					                                                    HitFX->SoundAttachmentType, true, FinalVolMult,
 					                                                    PitchMultiplier);
 
+				//	GEngine->AddOnScreenDebugMessage(6, 1.0f, FColor::Green, FString::Printf(TEXT("ReportNoiseEvent : Foot Step (Attached)")));
+					UAISense_Hearing::ReportNoiseEvent(MeshOwner->GetInstigatorController(), MeshComp->GetSocketLocation(FootSocketName), FinalVolMult, MeshOwner, 0.f, FName(TEXT("FootStep")));
 					break;
 				}
 				if (SpawnedSound)

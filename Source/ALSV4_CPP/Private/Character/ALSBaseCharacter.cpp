@@ -1413,6 +1413,20 @@ void AALSBaseCharacter::LookingDirectionAction_Implementation()
 	SetRotationMode(EALSRotationMode::LookingDirection);
 }
 
+/*
+void AALSBaseCharacter::AttackAction_Implementation(bool bValue)
+{
+	if (bValue)
+	{
+		bIsAttacking = true;
+	}
+	else
+	{
+		bIsAttacking = false;
+	}
+}
+*/
+
 void AALSBaseCharacter::ReplicatedRagdollStart()
 {
 	if (HasAuthority())
@@ -1456,3 +1470,4 @@ void AALSBaseCharacter::OnRep_VisibleMesh(USkeletalMesh* NewVisibleMesh)
 {
 	OnVisibleMeshChanged(NewVisibleMesh);
 }
+

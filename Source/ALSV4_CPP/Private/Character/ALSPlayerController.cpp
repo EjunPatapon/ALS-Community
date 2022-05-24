@@ -361,3 +361,13 @@ void AALSPlayerController::DebugOverlayMenuCycleAction(const FInputActionValue& 
 		}
 	}
 }
+/*
+void AALSPlayerController::AttackAction(const FInputActionValue& Value)
+{
+	if (PossessedCharacter)
+	{
+		PossessedCharacter->AttackAction(Value.Get<bool>());
+	}
+}
+*/
+
