@@ -206,6 +206,18 @@ private:
 	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = true), Category = "ALS|Movement System")
 	bool GettingUp_ = false;
 
+	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = true), Category = "ALS|Movement System")
+	bool Attacking_ = false;
+
+	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = true), Category = "ALS|Movement System")
+	bool Equipping_ = false;
+
+	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = true), Category = "ALS|Movement System")
+	bool Stunned_ = false;
+
+	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = true), Category = "ALS|Movement System")
+	bool Down_ = false;
+
 public:
 	FALSMovementAction()
 	{
@@ -218,7 +230,12 @@ public:
 	const bool& HighMantle() const { return HighMantle_; }
 	const bool& Rolling() const { return Rolling_; }
 	const bool& GettingUp() const { return GettingUp_; }
+	const bool& Attacking() const { return Attacking_; }
+	const bool& Equipping() const { return Equipping_; }
+	const bool& Stunned() const { return Stunned_; }
+	const bool& Down() const { return Down_; }
 
+	
 	operator EALSMovementAction() const { return Action; }
 
 	void operator=(const EALSMovementAction NewAction)
@@ -229,6 +246,10 @@ public:
 		HighMantle_ = Action == EALSMovementAction::HighMantle;
 		Rolling_ = Action == EALSMovementAction::Rolling;
 		GettingUp_ = Action == EALSMovementAction::GettingUp;
+		Attacking_ = Action == EALSMovementAction::Attacking;
+		Equipping_ = Action == EALSMovementAction::Equipping;
+		Stunned_ = Action == EALSMovementAction::Stunned;
+		Down_ = Action == EALSMovementAction::Down;
 	}
 };
 

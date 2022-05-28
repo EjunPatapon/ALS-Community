@@ -42,7 +42,11 @@ enum class EALSMovementAction : uint8
 	LowMantle,
 	HighMantle,
 	Rolling,
-	GettingUp
+	GettingUp,
+	Attacking,
+	Equipping,
+	Stunned,
+	Down
 };
 
 /**
