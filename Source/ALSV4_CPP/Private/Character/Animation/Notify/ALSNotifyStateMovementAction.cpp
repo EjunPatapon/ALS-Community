@@ -26,13 +26,15 @@ void UALSNotifyStateMovementAction::NotifyEnd(USkeletalMeshComponent* MeshComp, 
 	AALSBaseCharacter* BaseCharacter = Cast<AALSBaseCharacter>(MeshComp->GetOwner());
 	if (BaseCharacter && BaseCharacter->GetMovementAction() == MovementAction)
 	{
-		BaseCharacter->SetMovementAction(EALSMovementAction::None);
+		BaseCharacter->SetMovementAction(NextMovementAction);
 	}
 }
 
 FString UALSNotifyStateMovementAction::GetNotifyName_Implementation() const
 {
-	FString Name(TEXT("Movement Action: "));
+	FString Name(TEXT("MovementAction: "));
 	Name.Append(GetEnumerationToString(MovementAction));
+	Name.Append(TEXT(", Next MovementAction: "));
+	Name.Append(GetEnumerationToString(NextMovementAction));
 	return Name;
 }

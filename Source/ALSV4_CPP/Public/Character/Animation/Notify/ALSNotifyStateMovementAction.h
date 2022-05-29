@@ -29,4 +29,8 @@ class ALSV4_CPP_API UALSNotifyStateMovementAction : public UAnimNotifyState
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = AnimNotify)
 	EALSMovementAction MovementAction = EALSMovementAction::None;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = AnimNotify)
+	EALSMovementAction NextMovementAction = EALSMovementAction::None;
+
 };
