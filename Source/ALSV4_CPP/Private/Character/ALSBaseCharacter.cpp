@@ -76,7 +76,10 @@ void AALSBaseCharacter::Replicated_PlayMontage_Implementation(UAnimMontage* Mont
 		GetMesh()->GetAnimInstance()->Montage_Play(Montage, PlayRate);
 	}
 
-	Server_PlayMontage(Montage, PlayRate);
+	if (GetLocalRole() != ROLE_SimulatedProxy)
+	{
+		Server_PlayMontage(Montage, PlayRate);
+	}
 }
 
 void AALSBaseCharacter::BeginPlay()
