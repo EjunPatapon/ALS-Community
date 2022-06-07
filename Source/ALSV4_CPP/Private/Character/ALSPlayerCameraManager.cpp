@@ -12,7 +12,6 @@
 
 #include "Kismet/KismetMathLibrary.h"
 
-
 const FName NAME_CameraBehavior(TEXT("CameraBehavior"));
 const FName NAME_CameraOffset_X(TEXT("CameraOffset_X"));
 const FName NAME_CameraOffset_Y(TEXT("CameraOffset_Y"));
@@ -136,13 +135,30 @@ bool AALSPlayerCameraManager::CustomCameraBehavior(float DeltaTime, FVector& Loc
 	ControlledCharacter->GetCameraParameters(TPFOV, FPFOV, bRightShoulder);
 
 	// Step 2: Calculate Target Camera Rotation. Use the Control Rotation and interpolate for smooth camera rotation.
-	const FRotator& InterpResult = FMath::RInterpTo(GetCameraRotation(),
-	                                                GetOwningPlayerController()->GetControlRotation(), DeltaTime,
-	                                                GetCameraBehaviorParam(NAME_RotationLagSpeed));
+	
+	AALSBaseCharacter* AsALSBaseCharacter = Cast<AALSBaseCharacter>(ControlledCharacter);
+	if(AsALSBaseCharacter->GetRotationMode() == EALSRotationMode::Aiming && AsALSBaseCharacter->CombatAimingRotation != FRotator::ZeroRotator)
+	{
+		/** Custom code */
+		const FRotator& InterpResult = FMath::RInterpTo(GetCameraRotation(),
+														AsALSBaseCharacter->CombatAimingRotation, DeltaTime,
+														GetCameraBehaviorParam(NAME_RotationLagSpeed));
 
-	TargetCameraRotation = UKismetMathLibrary::RLerp(InterpResult, DebugViewRotation,
-	                                                 GetCameraBehaviorParam(TEXT("Override_Debug")), true);
+		TargetCameraRotation = UKismetMathLibrary::RLerp(InterpResult, DebugViewRotation,
+													 GetCameraBehaviorParam(TEXT("Override_Debug")), true);
+	}
+	else
+	{
+		/** Origin code */
+		const FRotator& InterpResult = FMath::RInterpTo(GetCameraRotation(),
+														GetOwningPlayerController()->GetControlRotation(), DeltaTime,
+														GetCameraBehaviorParam(NAME_RotationLagSpeed));
 
+		TargetCameraRotation = UKismetMathLibrary::RLerp(InterpResult, DebugViewRotation,
+													 GetCameraBehaviorParam(TEXT("Override_Debug")), true);
+	}
+
+	
 	// Step 3: Calculate the Smoothed Pivot Target (Orange Sphere).
 	// Get the 3P Pivot Target (Green Sphere) and interpolate using axis independent lag for maximum control.
 	const FVector LagSpd(GetCameraBehaviorParam(NAME_PivotLagSpeed_X),

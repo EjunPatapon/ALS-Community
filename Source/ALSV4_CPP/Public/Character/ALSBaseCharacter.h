@@ -622,6 +622,11 @@ private:
 	UPROPERTY()
 	TObjectPtr<UALSDebugComponent> ALSDebugComponent = nullptr;
 
+public:
+	/** Adding Aiming Target implement, Set from CombatComponent */
+	UPROPERTY()
+	FRotator CombatAimingRotation = FRotator::ZeroRotator;
+
 /*
 private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "ALS|Input", meta = (AllowPrivateAccess = "true"))
