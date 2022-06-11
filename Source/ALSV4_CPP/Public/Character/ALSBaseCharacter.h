@@ -627,6 +627,9 @@ public:
 	UPROPERTY()
 	FRotator CombatAimingRotation = FRotator::ZeroRotator;
 
+	UPROPERTY()
+	bool bIsStunt = false;
+	
 /*
 private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "ALS|Input", meta = (AllowPrivateAccess = "true"))

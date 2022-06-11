@@ -198,39 +198,42 @@ bool AALSPlayerCameraManager::CustomCameraBehavior(float DeltaTime, FVector& Loc
 	// Step 6: Trace for an object between the camera and character to apply a corrective offset.
 	// Trace origins are set within the Character BP via the Camera Interface.
 	// Functions like the normal spring arm, but can allow for different trace origins regardless of the pivot
-	FVector TraceOrigin;
-	float TraceRadius;
-	ECollisionChannel TraceChannel = ControlledCharacter->GetThirdPersonTraceParams(TraceOrigin, TraceRadius);
-
-	UWorld* World = GetWorld();
-	check(World);
-
-	FCollisionQueryParams Params;
-	Params.AddIgnoredActor(this);
-	Params.AddIgnoredActor(ControlledCharacter);
-
-	FHitResult HitResult;
-	const FCollisionShape SphereCollisionShape = FCollisionShape::MakeSphere(TraceRadius);
-	const bool bHit = World->SweepSingleByChannel(HitResult, TraceOrigin, TargetCameraLocation, FQuat::Identity,
-	                                              TraceChannel, SphereCollisionShape, Params);
-
-	if (ALSDebugComponent && ALSDebugComponent->GetShowTraces())
+	if(!AsALSBaseCharacter->bIsStunt)
 	{
-		UALSDebugComponent::DrawDebugSphereTraceSingle(World,
-		                                               TraceOrigin,
-		                                               TargetCameraLocation,
-		                                               SphereCollisionShape,
-		                                               EDrawDebugTrace::Type::ForOneFrame,
-		                                               bHit,
-		                                               HitResult,
-		                                               FLinearColor::Red,
-		                                               FLinearColor::Green,
-		                                               5.0f);
-	}
+		FVector TraceOrigin;
+		float TraceRadius;
+		ECollisionChannel TraceChannel = ControlledCharacter->GetThirdPersonTraceParams(TraceOrigin, TraceRadius);
 
-	if (HitResult.IsValidBlockingHit())
-	{
-		TargetCameraLocation += HitResult.Location - HitResult.TraceEnd;
+		UWorld* World = GetWorld();
+		check(World);
+
+		FCollisionQueryParams Params;
+		Params.AddIgnoredActor(this);
+		Params.AddIgnoredActor(ControlledCharacter);
+
+		FHitResult HitResult;
+		const FCollisionShape SphereCollisionShape = FCollisionShape::MakeSphere(TraceRadius);
+		const bool bHit = World->SweepSingleByChannel(HitResult, TraceOrigin, TargetCameraLocation, FQuat::Identity,
+													  TraceChannel, SphereCollisionShape, Params);
+
+		if (ALSDebugComponent && ALSDebugComponent->GetShowTraces())
+		{
+			UALSDebugComponent::DrawDebugSphereTraceSingle(World,
+														   TraceOrigin,
+														   TargetCameraLocation,
+														   SphereCollisionShape,
+														   EDrawDebugTrace::Type::ForOneFrame,
+														   bHit,
+														   HitResult,
+														   FLinearColor::Red,
+														   FLinearColor::Green,
+														   5.0f);
+		}
+
+		if (HitResult.IsValidBlockingHit())
+		{
+			TargetCameraLocation += HitResult.Location - HitResult.TraceEnd;
+		}
 	}
 
 	// Step 8: Lerp First Person Override and return target camera parameters.
