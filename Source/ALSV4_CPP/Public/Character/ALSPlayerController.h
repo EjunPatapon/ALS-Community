@@ -4,6 +4,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "ALSPlayerCameraManager.h"
 #include "InputActionValue.h"
 #include "GameFramework/PlayerController.h"
 #include "ALSPlayerController.generated.h"
