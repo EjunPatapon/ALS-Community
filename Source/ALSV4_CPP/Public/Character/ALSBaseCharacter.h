@@ -628,7 +628,7 @@ public:
 	FRotator CombatAimingRotation = FRotator::ZeroRotator;
 
 	UPROPERTY()
-	bool bIsStunt = false;
+	bool bDisableSpringCamera = false;
 	
 /*
 private:

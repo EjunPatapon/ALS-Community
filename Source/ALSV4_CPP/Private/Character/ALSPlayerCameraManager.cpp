@@ -198,7 +198,7 @@ bool AALSPlayerCameraManager::CustomCameraBehavior(float DeltaTime, FVector& Loc
 	// Step 6: Trace for an object between the camera and character to apply a corrective offset.
 	// Trace origins are set within the Character BP via the Camera Interface.
 	// Functions like the normal spring arm, but can allow for different trace origins regardless of the pivot
-	if(!AsALSBaseCharacter->bIsStunt)
+	if(!AsALSBaseCharacter->bDisableSpringCamera)
 	{
 		FVector TraceOrigin;
 		float TraceRadius;
