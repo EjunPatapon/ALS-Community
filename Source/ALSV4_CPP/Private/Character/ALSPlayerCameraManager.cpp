@@ -139,7 +139,7 @@ bool AALSPlayerCameraManager::CustomCameraBehavior(float DeltaTime, FVector& Loc
 	AALSBaseCharacter* AsALSBaseCharacter = Cast<AALSBaseCharacter>(ControlledCharacter);
 	if(AsALSBaseCharacter->GetRotationMode() == EALSRotationMode::Aiming && AsALSBaseCharacter->CombatAimingRotation != FRotator::ZeroRotator)
 	{
-		/** Custom code */
+		/** Custom code エイム中のターゲット注視 */
 		const FRotator& InterpResult = FMath::RInterpTo(GetCameraRotation(),
 														AsALSBaseCharacter->CombatAimingRotation, DeltaTime,
 														GetCameraBehaviorParam(NAME_RotationLagSpeed));
@@ -198,7 +198,7 @@ bool AALSPlayerCameraManager::CustomCameraBehavior(float DeltaTime, FVector& Loc
 	// Step 6: Trace for an object between the camera and character to apply a corrective offset.
 	// Trace origins are set within the Character BP via the Camera Interface.
 	// Functions like the normal spring arm, but can allow for different trace origins regardless of the pivot
-	if(!AsALSBaseCharacter->bDisableSpringCamera)
+	if(!AsALSBaseCharacter->bDisableSpringCamera)	// スプリングのOFF
 	{
 		FVector TraceOrigin;
 		float TraceRadius;
