@@ -143,6 +143,7 @@ bool AALSPlayerCameraManager::CustomCameraBehavior(float DeltaTime, FVector& Loc
 		const FRotator& InterpResult = FMath::RInterpTo(GetCameraRotation(),
 														AsALSBaseCharacter->CombatAimingRotation, DeltaTime,
 														GetCameraBehaviorParam(NAME_RotationLagSpeed));
+//		GEngine->AddOnScreenDebugMessage(1, 1.0f, FColor::Emerald, FString::Printf(TEXT("InterpResult: %f, %f, %f"), InterpResult.Roll, InterpResult.Pitch, InterpResult.Yaw));
 
 		TargetCameraRotation = UKismetMathLibrary::RLerp(InterpResult, DebugViewRotation,
 													 GetCameraBehaviorParam(TEXT("Override_Debug")), true);
