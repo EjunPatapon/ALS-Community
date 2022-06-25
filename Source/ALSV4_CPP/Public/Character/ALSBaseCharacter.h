@@ -631,6 +631,7 @@ public:
 	bool bDisableSpringCamera = false;
 	
 /*
+ *　Pushのテスト
 private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "ALS|Input", meta = (AllowPrivateAccess = "true"))
 	bool bIsAttacking;
