@@ -93,7 +93,8 @@ enum class EALSRotationMode : uint8
 {
 	VelocityDirection,
 	LookingDirection,
-	Aiming
+	Aiming,
+	SideView
 };
 
 /**
