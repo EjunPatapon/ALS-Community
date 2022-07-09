@@ -112,9 +112,6 @@ private:
 	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = true), Category = "ALS|Rotation System")
 	bool Aiming_ = false;
 
-	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = true), Category = "ALS|Rotation System")
-	bool SideView_ = false;
-
 public:
 	FALSRotationMode()
 	{
@@ -125,7 +122,6 @@ public:
 	const bool& VelocityDirection() const { return VelocityDirection_; }
 	const bool& LookingDirection() const { return LookingDirection_; }
 	const bool& Aiming() const { return Aiming_; }
-	const bool& SideView() const { return SideView_; }
 
 	operator EALSRotationMode() const { return RotationMode; }
 
@@ -135,7 +131,6 @@ public:
 		VelocityDirection_ = RotationMode == EALSRotationMode::VelocityDirection;
 		LookingDirection_ = RotationMode == EALSRotationMode::LookingDirection;
 		Aiming_ = RotationMode == EALSRotationMode::Aiming;
-		SideView_ = RotationMode == EALSRotationMode::SideView;
 	}
 };
 

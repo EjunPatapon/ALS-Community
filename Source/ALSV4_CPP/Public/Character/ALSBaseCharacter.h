@@ -629,7 +629,14 @@ public:
 
 	UPROPERTY()
 	bool bDisableSpringCamera = false;
-	
+
+	/** Set from CombatComponent for controlling AimYawRate */
+	UPROPERTY()
+	bool bSideViewMode = false;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ALS|SideViewMode")
+	FRotator SideViewAimingRotation = FRotator::ZeroRotator;
+
 /*
  *　Pushのテスト
 private:

@@ -1000,6 +1000,22 @@ void AALSBaseCharacter::SetEssentialValues(float DeltaTime)
 	// Set the Aim Yaw rate by comparing the current and previous Aim Yaw value, divided by Delta Seconds.
 	// This represents the speed the camera is rotating left to right.
 	AimYawRate = FMath::Abs((AimingRotation.Yaw - PreviousAimYaw) / DeltaTime);
+
+	/*
+	if(!bSideViewMode)
+	{
+		AimYawRate = FMath::Abs((AimingRotation.Yaw - PreviousAimYaw) / DeltaTime);
+	}
+	else
+	{
+		GEngine->AddOnScreenDebugMessage(1, 2.0f, FColor::Red, FString::Printf(TEXT("SideViewMode: true")));
+		if(SideViewAimingRotation.Yaw != 0.f)
+		{
+			GEngine->AddOnScreenDebugMessage(2, 2.0f, FColor::Red, FString::Printf(TEXT("SideViewAimingRotation.Yaw : %f"), SideViewAimingRotation.Yaw));
+		}
+		AimYawRate = FMath::Abs((SideViewAimingRotation.Yaw - PreviousAimYaw) / DeltaTime);
+	}
+	 */
 }
 
 void AALSBaseCharacter::UpdateCharacterMovement()
