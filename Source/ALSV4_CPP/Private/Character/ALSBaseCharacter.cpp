@@ -53,6 +53,9 @@ void AALSBaseCharacter::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& Ou
 	DOREPLIFETIME_CONDITION(AALSBaseCharacter, ReplicatedCurrentAcceleration, COND_SkipOwner);
 	DOREPLIFETIME_CONDITION(AALSBaseCharacter, ReplicatedControlRotation, COND_SkipOwner);
 
+	DOREPLIFETIME_CONDITION(AALSBaseCharacter, SideViewAimingRotation, COND_SkipOwner);
+	DOREPLIFETIME_CONDITION(AALSBaseCharacter, bSideViewMode, COND_SkipOwner);
+	
 	DOREPLIFETIME(AALSBaseCharacter, DesiredGait);
 	DOREPLIFETIME_CONDITION(AALSBaseCharacter, DesiredStance, COND_SkipOwner);
 	DOREPLIFETIME_CONDITION(AALSBaseCharacter, DesiredRotationMode, COND_SkipOwner);
@@ -963,7 +966,14 @@ void AALSBaseCharacter::SetEssentialValues(float DeltaTime)
 
 	// Interp AimingRotation to current control rotation for smooth character rotation movement. Decrease InterpSpeed
 	// for slower but smoother movement.
-	AimingRotation = FMath::RInterpTo(AimingRotation, ReplicatedControlRotation, DeltaTime, 30);
+	if(bSideViewMode && GetVelocity().Size2D() < 1.0f)
+	{
+		AimingRotation = FMath::RInterpTo(AimingRotation, SideViewAimingRotation, DeltaTime, 30);
+	}
+	else
+	{
+		AimingRotation = FMath::RInterpTo(AimingRotation, ReplicatedControlRotation, DeltaTime, 30);
+	}
 
 	// These values represent how the capsule is moving as well as how it wants to move, and therefore are essential
 	// for any data driven animation system. They are also used throughout the system for various functions,
