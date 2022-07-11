@@ -970,6 +970,10 @@ void AALSBaseCharacter::SetEssentialValues(float DeltaTime)
 	{
 		AimingRotation = FMath::RInterpTo(AimingRotation, SideViewAimingRotation, DeltaTime, 30);
 	}
+	else if(bSideViewMode && GetVelocity().Size2D() >= 1.0f)
+	{
+		AimingRotation = FMath::RInterpTo(AimingRotation, SideViewAimingRotation, DeltaTime, 30);
+	}
 	else
 	{
 		AimingRotation = FMath::RInterpTo(AimingRotation, ReplicatedControlRotation, DeltaTime, 30);
