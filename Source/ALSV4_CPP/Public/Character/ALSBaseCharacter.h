@@ -618,6 +618,9 @@ protected:
 	/** We won't use curve based movement and a few other features on networked games */
 	bool bEnableNetworkOptimizations = false;
 
+	UPROPERTY(BlueprintReadWrite, Replicated, Category = "ALS|State Values")
+	bool bIsFacingRight = false;
+
 private:
 	UPROPERTY()
 	TObjectPtr<UALSDebugComponent> ALSDebugComponent = nullptr;
@@ -636,6 +639,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Replicated, Category = "ALS|SideViewMode")
 	FRotator SideViewAimingRotation = FRotator::ZeroRotator;
+
+	UFUNCTION(BlueprintGetter, Category = "ALS|Character States")
+	bool GetIsFacingRight() const { return bIsFacingRight; }
 
 /*
  *　Pushのテスト
