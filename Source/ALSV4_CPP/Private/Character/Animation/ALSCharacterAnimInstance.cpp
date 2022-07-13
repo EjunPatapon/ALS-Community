@@ -94,6 +94,7 @@ void UALSCharacterAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
 	GroundedEntryState = Character->GetGroundedEntryState();
 	bIsFacingRight = Character->GetIsFacingRight();
 	bSideViewMode = Character->bSideViewMode;
+	bMovedAfterCLF = Character->GetMovedAfterCLF();
 
 	UpdateAimingValues(DeltaSeconds);
 	UpdateLayerValues();

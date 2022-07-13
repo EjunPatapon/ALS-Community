@@ -621,6 +621,9 @@ protected:
 	UPROPERTY(BlueprintReadWrite, Replicated, Category = "ALS|State Values")
 	bool bIsFacingRight = false;
 
+	UPROPERTY(BlueprintReadWrite, Replicated, Category = "ALS|State Values")
+	bool bMovedAfterCLF = false;
+
 private:
 	UPROPERTY()
 	TObjectPtr<UALSDebugComponent> ALSDebugComponent = nullptr;
@@ -642,6 +645,9 @@ public:
 
 	UFUNCTION(BlueprintGetter, Category = "ALS|Character States")
 	bool GetIsFacingRight() const { return bIsFacingRight; }
+
+	UFUNCTION(BlueprintGetter, Category = "ALS|Character States")
+	bool GetMovedAfterCLF() const { return bMovedAfterCLF; }
 
 /*
  *　Pushのテスト
