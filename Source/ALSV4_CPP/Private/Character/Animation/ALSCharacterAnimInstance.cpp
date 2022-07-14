@@ -95,6 +95,7 @@ void UALSCharacterAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
 	bIsFacingRight = Character->GetIsFacingRight();
 	bSideViewMode = Character->bSideViewMode;
 	bMovedAfterCLF = Character->GetMovedAfterCLF();
+	bIsCovered = Character->GetIsCovered();
 
 	UpdateAimingValues(DeltaSeconds);
 	UpdateLayerValues();

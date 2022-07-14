@@ -624,6 +624,10 @@ protected:
 	UPROPERTY(BlueprintReadWrite, Replicated, Category = "ALS|State Values")
 	bool bMovedAfterCLF = false;
 
+	UPROPERTY(BlueprintReadWrite, Replicated, Category = "ALS|State Values")
+	bool bIsCovered = false;
+
+
 private:
 	UPROPERTY()
 	TObjectPtr<UALSDebugComponent> ALSDebugComponent = nullptr;
@@ -648,6 +652,9 @@ public:
 
 	UFUNCTION(BlueprintGetter, Category = "ALS|Character States")
 	bool GetMovedAfterCLF() const { return bMovedAfterCLF; }
+
+	UFUNCTION(BlueprintGetter, Category = "ALS|Character States")
+	bool GetIsCovered() const { return bIsCovered; }
 
 /*
  *　Pushのテスト
