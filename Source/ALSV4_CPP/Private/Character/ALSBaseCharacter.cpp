@@ -58,6 +58,7 @@ void AALSBaseCharacter::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& Ou
 	DOREPLIFETIME_CONDITION(AALSBaseCharacter, bIsFacingRight, COND_SkipOwner);
 	DOREPLIFETIME_CONDITION(AALSBaseCharacter, bIsCovered, COND_SkipOwner);
 	DOREPLIFETIME_CONDITION(AALSBaseCharacter, bMovedAfterCLF, COND_SkipOwner);
+	DOREPLIFETIME_CONDITION(AALSBaseCharacter, AimingDirection, COND_SkipOwner);
 	
 	DOREPLIFETIME(AALSBaseCharacter, DesiredGait);
 	DOREPLIFETIME_CONDITION(AALSBaseCharacter, DesiredStance, COND_SkipOwner);

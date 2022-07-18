@@ -618,7 +618,8 @@ protected:
 	/** We won't use curve based movement and a few other features on networked games */
 	bool bEnableNetworkOptimizations = false;
 
-	UPROPERTY(BlueprintReadWrite, Replicated, Category = "ALS|State Values")
+	UPROPERTY(EditAnywhere, Replicated, BlueprintReadWrite, Category = "ALS|State Values")
+//	UPROPERTY(BlueprintReadWrite, Replicated, Category = "ALS|State Values")
 	bool bIsFacingRight = false;
 
 	UPROPERTY(BlueprintReadWrite, Replicated, Category = "ALS|State Values")
@@ -627,6 +628,9 @@ protected:
 	UPROPERTY(BlueprintReadWrite, Replicated, Category = "ALS|State Values")
 	bool bIsCovered = false;
 
+	UPROPERTY(BlueprintReadWrite, Replicated, Category = "ALS|State Values")
+	FVector AimingDirection = FVector::ZeroVector;
+	
 
 private:
 	UPROPERTY()
@@ -657,7 +661,6 @@ public:
 	bool GetIsCovered() const { return bIsCovered; }
 
 /*
- *　Pushのテスト
 private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "ALS|Input", meta = (AllowPrivateAccess = "true"))
 	bool bIsAttacking;
