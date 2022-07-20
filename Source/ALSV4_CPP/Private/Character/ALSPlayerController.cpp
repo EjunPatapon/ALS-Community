@@ -20,8 +20,12 @@ void AALSPlayerController::OnPossess(APawn* NewPawn)
 	PossessedCharacter = Cast<AALSBaseCharacter>(NewPawn);
 	if (!IsRunningDedicatedServer())
 	{
-		// Servers want to setup camera only in listen servers.
-		SetupCamera();
+		if(PossessedCharacter->ActorHasTag(TEXT("ALS_Character")))
+		{
+			// Servers want to setup camera only in listen servers.
+			SetupCamera();
+			UE_LOG(LogTemp, Warning, TEXT("AALSPlayerController::OnPossess : PossessedCharacter: %s"), *PossessedCharacter->GetName());
+		}
 	}
 
 	SetupInputs();
@@ -37,7 +41,14 @@ void AALSPlayerController::OnRep_Pawn()
 {
 	Super::OnRep_Pawn();
 	PossessedCharacter = Cast<AALSBaseCharacter>(GetPawn());
-	SetupCamera();
+
+	if(PossessedCharacter->ActorHasTag(TEXT("ALS_Character")))
+	{
+		// Servers want to setup camera only in listen servers.
+		SetupCamera();
+		UE_LOG(LogTemp, Warning, TEXT("AALSPlayerController::OnRep_Pawn : PossessedCharacter: %s"), *PossessedCharacter->GetName());
+	}
+
 	SetupInputs();
 
 	UALSDebugComponent* DebugComp = Cast<UALSDebugComponent>(PossessedCharacter->GetComponentByClass(UALSDebugComponent::StaticClass()));

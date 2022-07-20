@@ -645,7 +645,7 @@ public:
 	bool bDisableSpringCamera = false;
 
 	/** Set from CombatComponent for controlling AimYawRate */
-	UPROPERTY(Replicated)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Replicated)
 	bool bSideViewMode = false;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Replicated, Category = "ALS|SideViewMode")
