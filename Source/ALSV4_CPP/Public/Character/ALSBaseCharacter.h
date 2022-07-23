@@ -618,19 +618,6 @@ protected:
 	/** We won't use curve based movement and a few other features on networked games */
 	bool bEnableNetworkOptimizations = false;
 
-	UPROPERTY(EditAnywhere, Replicated, BlueprintReadWrite, Category = "ALS|State Values")
-//	UPROPERTY(BlueprintReadWrite, Replicated, Category = "ALS|State Values")
-	bool bIsFacingRight = false;
-
-	UPROPERTY(BlueprintReadWrite, Replicated, Category = "ALS|State Values")
-	bool bMovedAfterCLF = false;
-
-	UPROPERTY(BlueprintReadWrite, Replicated, Category = "ALS|State Values")
-	bool bIsCovered = false;
-
-	UPROPERTY(BlueprintReadWrite, Replicated, Category = "ALS|State Values")
-	FVector AimingDirection = FVector::ZeroVector;
-	
 
 private:
 	UPROPERTY()
@@ -647,6 +634,18 @@ public:
 	/** Set from CombatComponent for controlling AimYawRate */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Replicated)
 	bool bSideViewMode = false;
+
+	UPROPERTY(EditAnywhere, Replicated, BlueprintReadWrite, Category = "ALS|State Values")
+	bool bIsFacingRight = false;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Replicated, Category = "ALS|State Values")
+	bool bMovedAfterCLF = false;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Replicated, Category = "ALS|State Values")
+	bool bIsCovered = false;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Replicated, Category = "ALS|State Values")
+	FVector AimingDirection = FVector::ZeroVector;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Replicated, Category = "ALS|SideViewMode")
 	FRotator SideViewAimingRotation = FRotator::ZeroRotator;
