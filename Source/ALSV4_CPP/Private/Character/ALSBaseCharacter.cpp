@@ -53,7 +53,7 @@ void AALSBaseCharacter::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& Ou
 	DOREPLIFETIME_CONDITION(AALSBaseCharacter, ReplicatedCurrentAcceleration, COND_SkipOwner);
 	DOREPLIFETIME_CONDITION(AALSBaseCharacter, ReplicatedControlRotation, COND_SkipOwner);
 
-	DOREPLIFETIME_CONDITION(AALSBaseCharacter, SideViewAimingRotation, COND_SkipOwner);
+	DOREPLIFETIME(AALSBaseCharacter, SideViewAimingRotation);
 	DOREPLIFETIME_CONDITION(AALSBaseCharacter, bSideViewMode, COND_SkipOwner);
 	DOREPLIFETIME_CONDITION(AALSBaseCharacter, bIsFacingRight, COND_SkipOwner);
 	DOREPLIFETIME_CONDITION(AALSBaseCharacter, bIsCovered, COND_SkipOwner);
@@ -978,7 +978,7 @@ void AALSBaseCharacter::SetEssentialValues(float DeltaTime)
 	{
 		AimingRotation = FMath::RInterpTo(AimingRotation, SideViewAimingRotation, DeltaTime, 30);
 	}
-	else
+	else if(!bSideViewMode)
 	{
 		AimingRotation = FMath::RInterpTo(AimingRotation, ReplicatedControlRotation, DeltaTime, 30);
 	}
@@ -1019,6 +1019,8 @@ void AALSBaseCharacter::SetEssentialValues(float DeltaTime)
 	// This represents the speed the camera is rotating left to right.
 	AimYawRate = FMath::Abs((AimingRotation.Yaw - PreviousAimYaw) / DeltaTime);
 
+	GEngine->AddOnScreenDebugMessage(10, 4.5f, FColor::Cyan, FString::Printf(TEXT("AALSBaseCharacter:: AimingRotation.Yaw: %f, GetActorRotation().Yaw: %f"), AimingRotation.Yaw, GetActorRotation().Yaw));
+	
 	/*
 	if(!bSideViewMode)
 	{

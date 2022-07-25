@@ -613,11 +613,11 @@ protected:
 	FTimerHandle OnLandedFrictionResetTimer;
 
 	/* Smooth out aiming by interping control rotation*/
+	UPROPERTY()
 	FRotator AimingRotation = FRotator::ZeroRotator;
 
 	/** We won't use curve based movement and a few other features on networked games */
 	bool bEnableNetworkOptimizations = false;
-
 
 private:
 	UPROPERTY()

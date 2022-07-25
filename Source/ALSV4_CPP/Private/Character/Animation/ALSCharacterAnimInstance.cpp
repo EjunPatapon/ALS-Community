@@ -205,9 +205,15 @@ bool UALSCharacterAnimInstance::CanRotateInPlace() const
 
 bool UALSCharacterAnimInstance::CanTurnInPlace() const
 {
-	return RotationMode.LookingDirection() &&
-		CharacterInformation.ViewMode == EALSViewMode::ThirdPerson &&
-		GetCurveValue(NAME_Enable_Transition) >= 0.99f;
+	if(RotationMode.LookingDirection() && CharacterInformation.ViewMode == EALSViewMode::ThirdPerson && GetCurveValue(NAME_Enable_Transition) >= 0.99f)
+	{
+		return true;
+	}
+	else if(0 && bSideViewMode && GetCurveValue(NAME_Enable_Transition) >= 0.99f)
+	{
+		return true;
+	}
+	return false;
 }
 
 bool UALSCharacterAnimInstance::CanDynamicTransition() const
@@ -551,6 +557,7 @@ void UALSCharacterAnimInstance::RotateInPlaceCheck()
 
 void UALSCharacterAnimInstance::TurnInPlaceCheck(float DeltaSeconds)
 {
+	GEngine->AddOnScreenDebugMessage(21, 2.0f, FColor::Purple, __FUNCTION__);
 	// Step 1: Check if Aiming angle is outside of the Turn Check Min Angle, and if the Aim Yaw Rate is below the Aim Yaw Rate Limit.
 	// If so, begin counting the Elapsed Delay Time. If not, reset the Elapsed Delay Time.
 	// This ensures the conditions remain true for a sustained period of time before turning in place.
