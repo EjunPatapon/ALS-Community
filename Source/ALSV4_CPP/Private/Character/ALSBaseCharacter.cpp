@@ -1019,7 +1019,7 @@ void AALSBaseCharacter::SetEssentialValues(float DeltaTime)
 	// This represents the speed the camera is rotating left to right.
 	AimYawRate = FMath::Abs((AimingRotation.Yaw - PreviousAimYaw) / DeltaTime);
 
-	GEngine->AddOnScreenDebugMessage(10, 4.5f, FColor::Cyan, FString::Printf(TEXT("AALSBaseCharacter:: AimingRotation.Yaw: %f, GetActorRotation().Yaw: %f"), AimingRotation.Yaw, GetActorRotation().Yaw));
+//	GEngine->AddOnScreenDebugMessage(10, 4.5f, FColor::Cyan, FString::Printf(TEXT("AALSBaseCharacter:: AimingRotation.Yaw: %f, GetActorRotation().Yaw: %f"), AimingRotation.Yaw, GetActorRotation().Yaw));
 	
 	/*
 	if(!bSideViewMode)
