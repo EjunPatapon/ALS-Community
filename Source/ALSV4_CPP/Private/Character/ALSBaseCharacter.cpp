@@ -54,8 +54,8 @@ void AALSBaseCharacter::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& Ou
 	DOREPLIFETIME_CONDITION(AALSBaseCharacter, ReplicatedControlRotation, COND_SkipOwner);
 
 	DOREPLIFETIME(AALSBaseCharacter, SideViewAimingRotation);
+	DOREPLIFETIME(AALSBaseCharacter, bIsFacingRight);
 	DOREPLIFETIME_CONDITION(AALSBaseCharacter, bSideViewMode, COND_SkipOwner);
-	DOREPLIFETIME_CONDITION(AALSBaseCharacter, bIsFacingRight, COND_SkipOwner);
 	DOREPLIFETIME_CONDITION(AALSBaseCharacter, bIsCovered, COND_SkipOwner);
 	DOREPLIFETIME_CONDITION(AALSBaseCharacter, bMovedAfterCLF, COND_SkipOwner);
 	DOREPLIFETIME_CONDITION(AALSBaseCharacter, AimingDirection, COND_SkipOwner);
