@@ -53,8 +53,10 @@ void AALSBaseCharacter::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& Ou
 	DOREPLIFETIME_CONDITION(AALSBaseCharacter, ReplicatedCurrentAcceleration, COND_SkipOwner);
 	DOREPLIFETIME_CONDITION(AALSBaseCharacter, ReplicatedControlRotation, COND_SkipOwner);
 
-	DOREPLIFETIME(AALSBaseCharacter, SideViewAimingRotation);
-	DOREPLIFETIME(AALSBaseCharacter, bIsFacingRight);
+//	DOREPLIFETIME(AALSBaseCharacter, SideViewAimingRotation);
+//	DOREPLIFETIME(AALSBaseCharacter, bIsFacingRight);
+	DOREPLIFETIME_CONDITION(AALSBaseCharacter, SideViewAimingRotation, COND_SkipOwner);
+	DOREPLIFETIME_CONDITION(AALSBaseCharacter, bIsFacingRight, COND_SkipOwner);
 	DOREPLIFETIME_CONDITION(AALSBaseCharacter, bSideViewMode, COND_SkipOwner);
 	DOREPLIFETIME_CONDITION(AALSBaseCharacter, bIsCovered, COND_SkipOwner);
 	DOREPLIFETIME_CONDITION(AALSBaseCharacter, bMovedAfterCLF, COND_SkipOwner);
@@ -1109,11 +1111,17 @@ void AALSBaseCharacter::UpdateGroundedRotation(float DeltaTime)
 
 			if (FMath::Abs(RotAmountCurve) > 0.001f)
 			{
-				if (GetLocalRole() == ROLE_AutonomousProxy)
+				if (GetLocalRole() == ROLE_AutonomousProxy && !bSideViewMode)
 				{
 					TargetRotation.Yaw = UKismetMathLibrary::NormalizeAxis(
 						TargetRotation.Yaw + (RotAmountCurve * (DeltaTime / (1.0f / 30.0f))));
 					SetActorRotation(TargetRotation);
+				}
+				else if(bSideViewMode)
+				{
+				//	AddActorWorldRotation({0, RotAmountCurve / 2 * (DeltaTime / (1.0f / 30.0f)), 0});
+					GEngine->AddOnScreenDebugMessage(20, 1.0f, FColor::Green,FString::Printf(TEXT("AsAICharater: %s, RotAmountCurve: %f"), *this->GetName(), RotAmountCurve));
+
 				}
 				else
 				{
