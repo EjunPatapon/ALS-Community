@@ -96,6 +96,8 @@ void UALSCharacterAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
 	bSideViewMode = Character->bSideViewMode;
 	bMovedAfterCLF = Character->GetMovedAfterCLF();
 	bIsCovered = Character->GetIsCovered();
+	bIsSheatingArrow = Character->bIsSheatingArrow;
+	bHasArrow = Character->bHasArrow;
 
 	UpdateAimingValues(DeltaSeconds);
 	UpdateLayerValues();

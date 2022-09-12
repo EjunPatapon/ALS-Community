@@ -5,6 +5,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "../../../../../../Source/ProtoTypeALS/Public/Components/CombatData.h"
 #include "Components/TimelineComponent.h"
 #include "Library/ALSCharacterEnumLibrary.h"
 #include "Library/ALSCharacterStructLibrary.h"
@@ -643,6 +644,14 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Replicated, Category = "ALS|State Values")
 	bool bIsCovered = false;
+
+	/** Set from CombatComponent for controlling Bow Action */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Replicated, Category = "ALS|State Values")
+	bool bIsSheatingArrow = false;
+
+	/** Set from CombatComponent for controlling Bow Action */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Replicated, Category = "ALS|State Values")
+	bool bHasArrow = false;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Replicated, Category = "ALS|State Values")
 	FVector AimingDirection = FVector::ZeroVector;
