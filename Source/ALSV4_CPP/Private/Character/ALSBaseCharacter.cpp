@@ -61,6 +61,7 @@ void AALSBaseCharacter::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& Ou
 	DOREPLIFETIME_CONDITION(AALSBaseCharacter, bIsCovered, COND_SkipOwner);
 	DOREPLIFETIME_CONDITION(AALSBaseCharacter, bIsSheatingArrow, COND_SkipOwner);
 	DOREPLIFETIME_CONDITION(AALSBaseCharacter, bHasArrow, COND_SkipOwner);
+	DOREPLIFETIME_CONDITION(AALSBaseCharacter, bIsAttacking, COND_SkipOwner);
 	DOREPLIFETIME_CONDITION(AALSBaseCharacter, bMovedAfterCLF, COND_SkipOwner);
 	DOREPLIFETIME_CONDITION(AALSBaseCharacter, AimingDirection, COND_SkipOwner);
 	

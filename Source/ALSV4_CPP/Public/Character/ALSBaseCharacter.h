@@ -653,6 +653,10 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Replicated, Category = "ALS|State Values")
 	bool bHasArrow = false;
 
+	/** Set from CombatComponent for controlling Bow Action */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Replicated, Category = "ALS|State Values")
+	bool bIsAttacking = false;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Replicated, Category = "ALS|State Values")
 	FVector AimingDirection = FVector::ZeroVector;
 

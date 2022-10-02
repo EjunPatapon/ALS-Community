@@ -98,6 +98,7 @@ void UALSCharacterAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
 	bIsCovered = Character->GetIsCovered();
 	bIsSheatingArrow = Character->bIsSheatingArrow;
 	bHasArrow = Character->bHasArrow;
+	bIsAttacking = Character->bIsAttacking;
 
 	UpdateAimingValues(DeltaSeconds);
 	UpdateLayerValues();
